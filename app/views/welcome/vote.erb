@@ -1,0 +1,19 @@
+<h1>
+  Wybory: <%= @election.name %>
+</h1>
+
+<h2>
+  Opis: <%= @election.info %>
+</h2>
+
+<ul>
+  <% @election.election_candidates.find_each do |candidate| %>
+      <li>
+        Imie i nazwisko kandydata: <%= candidate.User.name%> <%= candidate.User.surname%>
+        <br>
+        Partia: <%= candidate.party%>
+        Lista: <%= candidate.place%>, miejsce: <%= candidate.place%>
+      </li>
+  <% end %>
+</ul>
+
