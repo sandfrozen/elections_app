@@ -1,0 +1,29 @@
+<div class="page-header">
+  <%= link_to election_candidates_path, class: 'btn btn-default' do %>
+    <span class="glyphicon glyphicon-list-alt"></span>
+    Back
+  <% end %>
+  <%= link_to edit_election_candidate_path(@election_candidate), class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-pencil"></span>
+    Edit
+  <% end %>
+  <h1>Show election_candidate</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>Party:</dt>
+  <dd><%= @election_candidate.party %></dd>
+
+  <dt>List:</dt>
+  <dd><%= @election_candidate.list %></dd>
+
+  <dt>Place:</dt>
+  <dd><%= @election_candidate.place %></dd>
+
+  <dt>User:</dt>
+  <dd><%= @election_candidate.User %></dd>
+
+  <dt>Election:</dt>
+  <dd><%= @election_candidate.Election %></dd>
+
+</dl>

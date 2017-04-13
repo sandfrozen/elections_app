@@ -1,0 +1,33 @@
+<div class="page-header">
+  <%= link_to new_election_user_path, class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-plus"></span>
+    New Election user
+  <% end %>
+  <h1>Listing election_users</h1>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+            <th>Vote</th>
+            <th>User</th>
+            <th>Election</th>
+            <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%= content_tag_for(:tr, @election_users) do |election_user| %>
+            <td><%= election_user.vote %></td>
+            <td><%= election_user.User %></td>
+            <td><%= election_user.Election %></td>
+            <td><%= link_to 'Show', election_user %></td>
+        <td><%= link_to 'Edit', edit_election_user_path(election_user) %></td>
+        <td><%= link_to 'Destroy', election_user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
+    </tbody>
+  </table>
+</div>

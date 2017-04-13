@@ -1,0 +1,29 @@
+<div class="page-header">
+  <%= link_to elections_path, class: 'btn btn-default' do %>
+    <span class="glyphicon glyphicon-list-alt"></span>
+    Back
+  <% end %>
+  <%= link_to edit_election_path(@election), class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-pencil"></span>
+    Edit
+  <% end %>
+  <h1>Show election</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>Name:</dt>
+  <dd><%= @election.name %></dd>
+
+  <dt>Info:</dt>
+  <dd><%= @election.info %></dd>
+
+  <dt>Start:</dt>
+  <dd><%= @election.start %></dd>
+
+  <dt>End:</dt>
+  <dd><%= @election.end %></dd>
+
+  <dt>Max votes:</dt>
+  <dd><%= @election.max_votes %></dd>
+
+</dl>

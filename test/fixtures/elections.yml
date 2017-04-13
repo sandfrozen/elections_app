@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  info: MyText
+  start: 2017-04-13 15:33:14
+  end: 2017-04-13 15:33:14
+  max_votes: 1
+
+two:
+  name: MyString
+  info: MyText
+  start: 2017-04-13 15:33:14
+  end: 2017-04-13 15:33:14
+  max_votes: 1

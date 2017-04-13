@@ -1,0 +1,2 @@
+module ElectionUsersHelper
+end

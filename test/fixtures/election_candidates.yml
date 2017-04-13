@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  party: MyString
+  list: 1
+  place: 1
+  User: one
+  Election: one
+
+two:
+  party: MyString
+  list: 1
+  place: 1
+  User: two
+  Election: two

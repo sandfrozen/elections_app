@@ -1,0 +1,23 @@
+<div class="page-header">
+  <%= link_to election_users_path, class: 'btn btn-default' do %>
+    <span class="glyphicon glyphicon-list-alt"></span>
+    Back
+  <% end %>
+  <%= link_to edit_election_user_path(@election_user), class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-pencil"></span>
+    Edit
+  <% end %>
+  <h1>Show election_user</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>Vote:</dt>
+  <dd><%= @election_user.vote %></dd>
+
+  <dt>User:</dt>
+  <dd><%= @election_user.User %></dd>
+
+  <dt>Election:</dt>
+  <dd><%= @election_user.Election %></dd>
+
+</dl>

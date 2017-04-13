@@ -1,0 +1,18 @@
+rails generate migration add_name_surname_pesel_to_users name:string surname:string pesel:string
+
+    <% if notice %>
+        <p class="alert alert-success"><%= notice %></p>
+    <% end %>
+    <% if alert %>
+        <p class="alert alert-danger"><%= alert %></p>
+    <% end %>
+
+rails g scaffold Election name:string info:text start:datetime end:datetime max_votes:integer
+
+rails g scaffold Election_Candidate party:string list:integer place:integer User:references Election:references
+
+rails g scaffold Election_User vote:integer User:references Election:references
+rails g devise user
+rails g devise:views
+rails generate controller Welcome index
+rails generate migration add_name_surname_pesel_to_users name:string surname:string pesel:string

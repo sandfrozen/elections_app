@@ -1,0 +1,37 @@
+<div class="page-header">
+  <%= link_to new_election_candidate_path, class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-plus"></span>
+    New Election candidate
+  <% end %>
+  <h1>Listing election_candidates</h1>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+            <th>Party</th>
+            <th>List</th>
+            <th>Place</th>
+            <th>User</th>
+            <th>Election</th>
+            <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%= content_tag_for(:tr, @election_candidates) do |election_candidate| %>
+            <td><%= election_candidate.party %></td>
+            <td><%= election_candidate.list %></td>
+            <td><%= election_candidate.place %></td>
+            <td><%= election_candidate.User %></td>
+            <td><%= election_candidate.Election %></td>
+            <td><%= link_to 'Show', election_candidate %></td>
+        <td><%= link_to 'Edit', edit_election_candidate_path(election_candidate) %></td>
+        <td><%= link_to 'Destroy', election_candidate, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,50 @@
+<%= form_for(@election, html: { class: "form-horizontal", role: "form" }) do |f| %>
+  <% if @election.errors.any? %>
+    <div class="alert alert-danger alert-dismissable" role="alert">
+      <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+      <h4><%= pluralize(@election.errors.count, "error") %> prohibited this election from being saved:</h4>
+
+      <ul>
+      <% @election.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :name, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.text_field :name, class: "form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :info, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.text_area :info, class: "form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :start, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.datetime_select :start, class: "form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :end, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.datetime_select :end, class: "form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :max_votes, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.number_field :max_votes, class: "form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <%= f.submit class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>

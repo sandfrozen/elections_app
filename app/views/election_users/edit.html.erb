@@ -1,0 +1,13 @@
+<div class="page-header">
+  <%= link_to election_users_path, class: 'btn btn-default' do %>
+    <span class="glyphicon glyphicon-list-alt"></span>
+    Back
+  <% end %>
+  <%= link_to @election_user, class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-info-sign"></span>
+    Show
+  <% end %>
+  <h1>Editing election_user</h1>
+</div>
+
+<%= render 'form' %>
