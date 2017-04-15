@@ -6,14 +6,27 @@
   Opis: <%= @election.info %>
 </h2>
 
-<ul>
-  <% @election.election_candidates.find_each do |candidate| %>
-      <li>
-        Imie i nazwisko kandydata: <%= candidate.User.name%> <%= candidate.User.surname%>
-        <br>
-        Partia: <%= candidate.party%>
-        Lista: <%= candidate.place%>, miejsce: <%= candidate.place%>
-      </li>
-  <% end %>
-</ul>
 
+<div class="table-responsive col-md-12">
+  <table class="table table-hover">
+    <thead>
+    <tr>
+      <th>Wybór (max: <%= @election.max_votes %>)</th>
+      <th>Kandydat</th>
+      <th>Partia</th>
+      <th>Numer listy</th>
+      <th>Miejsce na liście:</th>
+    </tr>
+    </thead>
+
+    <tbody>
+        <%= content_tag_for(:tr, @election.election_candidates.find_each) do |candidate| %>
+        <td><input type="checkbox" value=""></td>
+        <td><%= candidate.User.name %> <%= candidate.User.surname %></td>
+        <td><%= candidate.party %></td>
+        <td><%= candidate.place %></td>
+        <td><%= candidate.place %></td>
+        <% end %>
+    </tbody>
+  </table>
+</div>
