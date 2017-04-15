@@ -1,6 +1,6 @@
 class WelcomeController < ApplicationController
   def index
-    @elections = Election.where("start < ?", (Time.now))
+    @elections = Election.where("start < ? AND end > ?", (Time.now), (Time.now))
 
   end
 
