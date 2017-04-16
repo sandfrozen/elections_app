@@ -12,6 +12,7 @@ gem 'bootstrap-generators'
 gem 'bootstrap-sass'
 gem 'bootstrap_form'
 gem 'devise'
+gem 'rails_admin'
 gem 'record_tag_helper'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
