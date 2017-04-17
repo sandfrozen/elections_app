@@ -1,11 +1,13 @@
-<h1>
-  Wybory: <%= @election.name %>
-</h1>
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title"><%= @election.name %></h3>
+  </div>
+  <div class="panel-body">
+    <%= @election.info %>
+  </div>
+</div>
 
-<h2>
-  Opis: <%= @election.info %>
-</h2>
-
+<input type="number" style="display: none" id="max-votes" value="<%= @election.max_votes %>">
 
 <div class="table-responsive col-md-12">
   <table class="table table-hover">
@@ -21,7 +23,7 @@
 
     <tbody>
         <%= content_tag_for(:tr, @election.election_candidates.find_each) do |candidate| %>
-        <td><input type="checkbox" value=""></td>
+        <td><input type="checkbox" name="candidate"></td>
         <td><%= candidate.User.name %> <%= candidate.User.surname %></td>
         <td><%= candidate.party %></td>
         <td><%= candidate.place %></td>
