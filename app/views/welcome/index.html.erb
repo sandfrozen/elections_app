@@ -1,47 +1,30 @@
-<div class="page-header">
-  <h1>Aplikacja wybory - strona głowna</h1>
-  <h2>Tutaj widzsz aktualnie trwające wybory:</h2>
+<div class="jumbotron">
+  <div class="page-header">
+    <h3><%= t "welcome.title" %></h3>
+  </div>
 </div>
 
-<p>
-  <%= link_to "comments", "#", id: "comments-link", remote: true %>
-</p>
-
-<p>
-  <input type="checkbox" id="my-checkbox" value="napis">
-</p>
-
-<p id="my-p">
-  text
-</p>
-
-
-<div class="table-responsive">
-  <table class="table table-hover">
-    <thead>
-    <tr>
-      <th>Nazwa</th>
-      <th>Początek</th>
-      <th>Koniec</th>
-      <th></th>
-    </tr>
-    </thead>
-
-    <tbody>
-    <%= content_tag_for(:tr, @elections) do |election| %>
-        <td><%= election.name %></td>
-        <td><%= election.start.strftime('%d/%m/%Y o godzinie %H:%M') %></td>
-        <td><%= election.end.strftime('%d/%m/%Y o godzinie %H:%M') %></td>
-
-        <% if user_signed_in? && election.election_users.where("user_id = ?", current_user.id).present? %>
-            <td><%= link_to 'Zagłosuj', vote_path(election) %></td>
-        <% elsif user_signed_in? %>
-            <td>nie możesz głosować</td>
-        <% else %>
-            <td></td>
-        <% end %>
-
-    <% end %>
-    </tbody>
-  </table>
+<div id="votes" class="transitions-enabled">
+  <% @elections.each do |election| %>
+      <div class="box">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <h4 class="text-success"><%= election.name %></h4>
+            <% if user_signed_in? && election.election_users.where("user_id = ?", current_user.id).present? %>
+                <%= link_to 'Zagłosuj', vote_path(election) %>
+            <% elsif user_signed_in? %>
+                <p class="bg-warning">Nie możesz wziąć udziału w tym głosowaniu</p>
+            <% end %>
+          </div>
+          <div class="panel-body">
+            <p class="bg-success">Rodzaj wyborów:</p>
+            <%= election.election_type.name %>
+          </div>
+          <div class="panel-footer">
+            Rozpoczęcie: <%= election.start.strftime('%d/%m/%Y o godzinie %H:%M') %><br/>
+            Zakończenie: <%= election.end.strftime('%d/%m/%Y o godzinie %H:%M') %>
+          </div>
+        </div>
+      </div>
+  <% end %>
 </div>

@@ -5,8 +5,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="">
-  <meta name="author" content="">
-  <title>Starter Template for Bootstrap</title>
+  <meta name="author" content="Tomek Buslowski">
+  <title>E-wybory</title>
 
   <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
@@ -18,15 +18,43 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <%= render 'shared/navbar' %>
-  <div class="container">
-    <% flash.each do |name, msg| %>
-      <%= content_tag :div, class: "alert alert-#{ name == :error ? "danger" : name == "alert" ? "warning" : "success" } alert-dismissable", role: "alert" do %>
-        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <%= msg %>
+<%= render 'shared/navbar' %>
+<div class="container">
+  <% flash.each do |name, msg| %>
+      <%= content_tag :div, class: "alert alert-#{ name == :error ? "danger" : "success" } alert-dismissable", role: "alert" do %>
+          <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+          <%= msg %>
       <% end %>
-    <% end %>
-    <%= yield %>
+  <% end %>
+
+  <!-- Modal -->
+  <div class="modal fade" id="loginModal" role="dialog">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Logowanie</h4>
+        </div>
+        <div class="modal-body">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+              <%= f.email_field :email, autofocus: true, class: "form-control", placeholder: "Email" %>
+            </div>
+            <div class="input-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+              <%= f.password_field :password, autocomplete: "off", class: "form-control", placeholder: "Hasło" %>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <%= f.submit "Zaloguj", class: "btn btn-primary" %>
+        </div>
+      <% end %>
+      </div>
+    </div>
   </div>
+    <%= yield %>
+</div>
+<%= render 'shared/footer' %>
 </body>
 </html>

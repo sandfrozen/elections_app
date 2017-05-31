@@ -1,7 +1,25 @@
 class ApplicationController < ActionController::Base
+  protect_from_forgery with: :exception
+
   before_action :authenticate_user!
 
-  protect_from_forgery with: :exception
+  before_action :set_locale
+
+
+  helper_method :resource_name, :resource, :devise_mapping
+
+  def resource_name
+    :user
+  end
+
+  def resource
+    @resource ||= User.new
+  end
+
+  def devise_mapping
+    @devise_mapping ||= Devise.mappings[:user]
+  end
+
 
 
   def authenticate_admin!
@@ -16,5 +34,18 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :surname, :pesel])
     devise_parameter_sanitizer.permit(:account_update, keys: [:name, :surname, :pesel])
   end
+
+  private
+
+  def set_locale
+    I18n.locale = params[:locale] || I18n.default_locale
+  end
+
+  def default_url_options
+    { locale: I18n.locale }
+  end
+
+
+
 
 end

@@ -5,6 +5,7 @@ class ElectionUsersController < ApplicationController
   # GET /election_users
   # GET /election_users.json
   def index
+    @election_user = ElectionUser.new
     @election_users = ElectionUser.all
   end
 

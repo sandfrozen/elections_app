@@ -13,38 +13,44 @@
   <% end %>
 
   <div class="form-group">
-    <%= f.label :name, class: "col-sm-2 control-label" %>
+    <%= f.label :name, "Nazwa", class: "col-sm-2 control-label" %>
     <div class="col-sm-10">
-      <%= f.text_field :name, class: "form-control" %>
+      <%= f.text_field :name, class: "form-control", placeholder: "Nazwa wyborów" %>
+    </div>
+  </div>
+    <div class="form-group">
+      <%= f.label :election_type_id, "Typ", class: "col-sm-2 control-label" %>
+      <div class="col-sm-10">
+        <%= f.select :election_type_id, options_for_select(ElectionType.all.map{|s|[s.name, s.id]}) %>
+      </div>
+    </div>
+  <div class="form-group">
+    <%= f.label :info, "Dodatkowe informacje", class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.text_area :info, class: "form-control", placeholder: "Dodatkowe informacje"  %>
     </div>
   </div>
   <div class="form-group">
-    <%= f.label :info, class: "col-sm-2 control-label" %>
-    <div class="col-sm-10">
-      <%= f.text_area :info, class: "form-control" %>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :start, class: "col-sm-2 control-label" %>
+    <%= f.label :start, "Start", class: "col-sm-2 control-label" %>
     <div class="col-sm-10">
       <%= f.datetime_select :start, class: "form-control" %>
     </div>
   </div>
   <div class="form-group">
-    <%= f.label :end, class: "col-sm-2 control-label" %>
+    <%= f.label :end, "Koniec", class: "col-sm-2 control-label" %>
     <div class="col-sm-10">
       <%= f.datetime_select :end, class: "form-control" %>
     </div>
   </div>
   <div class="form-group">
-    <%= f.label :max_votes, class: "col-sm-2 control-label" %>
+    <%= f.label :max_votes, "Max ilość głosów", class: "col-sm-2 control-label" %>
     <div class="col-sm-10">
-      <%= f.number_field :max_votes, class: "form-control" %>
+      <%= f.number_field :max_votes, class: "form-control", placeholder: "Maksymalna ilość głosów"  %>
     </div>
   </div>
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
-      <%= f.submit class: "btn btn-primary" %>
+      <%= f.submit "Zapisz", class: "btn btn-primary" %>
     </div>
   </div>
 <% end %>

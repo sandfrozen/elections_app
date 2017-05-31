@@ -1,0 +1,38 @@
+.form-to-show{
+ display: none;
+}
+/* line 2, C:/Users/asu5/Documents/Rails/elections_app/app/assets/stylesheets/bootstrap-generators.scss */
+body {
+  padding-top: 60px;
+}
+
+/* line 7, C:/Users/asu5/Documents/Rails/elections_app/app/assets/stylesheets/bootstrap-generators.scss */
+.page-header a.btn {
+  float: right;
+}
+/* line 11, C:/Users/asu5/Documents/Rails/elections_app/app/assets/stylesheets/bootstrap-generators.scss */
+.page-header a.btn + a.btn {
+  margin-right: 8px;
+}
+
+/* line 16, C:/Users/asu5/Documents/Rails/elections_app/app/assets/stylesheets/bootstrap-generators.scss */
+input[type="radio"], input[type="checkbox"] {
+  width: initial;
+  height: initial;
+  margin-top: 7px;
+}
+/*
+ * This is a manifest file that'll be compiled into application.scss, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+
+
+ */

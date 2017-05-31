@@ -1,21 +1,29 @@
+<button class="btn btn-info btn-show-form">
+  Dodaj nowe wybory
+</button>
+<div class="form-to-show">
+  <div class="page-header">
+    <h3>Nowe wybory:</h3>
+  </div>
+  <%= render 'form' %>
+</div>
+
 <div class="page-header">
-  <%= link_to new_election_path, class: 'btn btn-primary' do %>
-    <span class="glyphicon glyphicon-plus"></span>
-    New Election
-  <% end %>
-  <h1>Listing elections</h1>
+  <h3>Wybory:</h3>
 </div>
 
 <div class="table-responsive">
   <table class="table table-striped table-bordered table-hover">
     <thead>
       <tr>
-            <th>Name</th>
-            <th>Info</th>
-            <th>Start</th>
-            <th>End</th>
-            <th>Max votes</th>
-            <th></th>
+        <th>Nazwa</th>
+        <th>Typ wyborów</th>
+        <th>Informacje</th>
+        <th>Start</th>
+        <th>Koniec</th>
+        <th>Max ilość głosów</th>
+        <th>Ilość uprawnionych</th>
+        <th>Ilość głosujących</th>
         <th></th>
         <th></th>
       </tr>
@@ -23,15 +31,27 @@
 
     <tbody>
       <%= content_tag_for(:tr, @elections) do |election| %>
+        <% if election.start <= Time.now && election.end >= Time.now %>
+            <tr style="border: solid indianred">
+        <% elsif election.end < Time.now %>
+            <tr style="border: solid #4cae4c">
+        <% elsif election.start > Time.now %>
+          <tr style="border: solid dodgerblue">
+        <% else %>
+          <tr>
+        <% end %>
             <td><%= election.name %></td>
+            <td><%= election.election_type.name %></td>
             <td><%= election.info %></td>
             <td><%= election.start %></td>
             <td><%= election.end %></td>
             <td><%= election.max_votes %></td>
-            <td><%= link_to 'Show', election %></td>
-        <td><%= link_to 'Edit', edit_election_path(election) %></td>
-        <td><%= link_to 'Destroy', election, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      <% end %>
+            <td><%= election.election_users.all.group(:user_id).count.size %></td>
+            <td><%= election.election_users.where("vote not null").group(:user_id).count.size %></td>
+            <td><%= link_to 'Edytuj', edit_election_path(election) %></td>
+            <td><%= link_to 'Usuń', election, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+    <% end %>
     </tbody>
   </table>
 </div>

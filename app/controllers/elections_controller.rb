@@ -5,7 +5,8 @@ class ElectionsController < ApplicationController
   # GET /elections
   # GET /elections.json
   def index
-    @elections = Election.all
+    @election = Election.new
+    @elections = Election.order(:start)
   end
 
   # GET /elections/1
@@ -29,7 +30,7 @@ class ElectionsController < ApplicationController
 
     respond_to do |format|
       if @election.save
-        format.html { redirect_to @election, notice: 'Election was successfully created.' }
+        format.html { redirect_to elections_path, notice: 'Wybory zostały dodane' }
         format.json { render :show, status: :created, location: @election }
       else
         format.html { render :new }
@@ -43,7 +44,7 @@ class ElectionsController < ApplicationController
   def update
     respond_to do |format|
       if @election.update(election_params)
-        format.html { redirect_to @election, notice: 'Election was successfully updated.' }
+        format.html { redirect_to elections_path, notice: 'Wybory zoostały zaktualizowane' }
         format.json { render :show, status: :ok, location: @election }
       else
         format.html { render :edit }
@@ -57,7 +58,7 @@ class ElectionsController < ApplicationController
   def destroy
     @election.destroy
     respond_to do |format|
-      format.html { redirect_to elections_url, notice: 'Election was successfully destroyed.' }
+      format.html { redirect_to elections_url, notice: 'Wybory zostały usunięte' }
       format.json { head :no_content }
     end
   end
@@ -70,6 +71,6 @@ class ElectionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def election_params
-      params.require(:election).permit(:name, :info, :start, :end, :max_votes)
+      params.require(:election).permit(:name, :election_type_id, :info, :start, :end, :max_votes)
     end
 end

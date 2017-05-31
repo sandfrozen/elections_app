@@ -17,6 +17,10 @@ $(document).on 'page:change', ->
     $('#my-p').append
 
 $(document).ready ->
+  $(".btn-show-new").click ->
+    $(".new-election-type-form").toggle()
+
+$(document).ready ->
   $("input[name='candidate']").change ->
     maxAllowed = parseInt( $("#max-votes").val() )
     count = $("input[name='candidate']:checked").length

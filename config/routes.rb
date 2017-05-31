@@ -1,12 +1,21 @@
 Rails.application.routes.draw do
-  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  resources :election_candidates
-  resources :election_users
-  resources :elections
-  root 'welcome#index'
 
-  get '/vote/:id' => 'welcome#vote', as: 'vote'
+  scope "(:locale)", locale: /#{I18n.available_locales.join("|")}/ do
+    resources :election_types
+    root to: 'welcome#index'
 
-  devise_for :users
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+    get '/welcome/your_candidatures'
+    get '/vote/:id' => 'welcome#vote', as: 'vote'
+
+    devise_for :users
+
+    mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+
+    resources :election_candidates
+    resources :election_users
+
+    resources :elections
+  end
+
 end

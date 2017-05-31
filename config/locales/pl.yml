@@ -1,0 +1,33 @@
+pl:
+  welcome:
+    title: "Wybory przez Internet - Strona główna"
+  date:
+    order:
+      - :day
+      - :month
+      - :year
+    month_names:
+        -
+        - Styczneń
+        - Luty
+        - Marzec
+        - Kwiecień
+        - Maj
+        - Czerwiec
+        - Lipiec
+        - Sierpień
+        - Wrzesień
+        - Październik
+        - Listopad
+        - Grudzień
+  activerecord:
+    attributes:
+      election_user:
+        vote: Głos
+        User_id: Użytkownik
+        Election_id: Wybory
+
+  others:
+    show: Pokaż
+    edit: Edycja
+    destroy: Usuń

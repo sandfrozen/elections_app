@@ -1,4 +1,4 @@
-<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+<nav class="navbar navbar-default" role="navigation">
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -7,31 +7,59 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand">Election app</a>
+      <a class="navbar-brand">E-wybory</a>
     </div>
 
     <div id="navbar" class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
-        <li><a href=<%= root_path %>>Actual elections</a></li>
+        <li><a href=<%= root_path %>>Aktualne wybory</a></li>
+
+
         <% if user_signed_in? %>
-            <li><a href="#userelection">Your elections</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">O mnie<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="/welcome/your_candidatures">Moje kandydatury</a></li>
+                <li><a href="#">Oddane głosy</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="/users/edit">Moje dane</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href=<%= destroy_user_session_path %> data-method="delete">Wyloguj</a></li>
+              </ul>
+            </li>
+
             <% if current_user.admin %>
-                <li><a href="/admin"><span style="color:red">Admin panel</span></a></li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Zarządzanie<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href=<%= election_types_path %>>Rodzaje wyborów</a></li>
+                    <li><a href=<%= elections_path %>>Wybory</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href=<%= election_users_path %>>Uprawnienia osób</a></li>
+                    <li><a href=<%= election_candidates_path %>>Kandydaci</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="/admin"><span style="color:red">Zewnętrzny panel administratora</span></a></li>
+                  </ul>
+                </li>
             <% end %>
         <% end %>
       </ul>
 
       <p class="navbar-text pull-right">
         <% if user_signed_in? %>
+              Cześć
             <strong>
-              Hello,
-              <%= link_to current_user.email, edit_user_registration_path, :class => 'navbar-link' %>
+              <%= link_to current_user.name, edit_user_registration_path, :class => 'navbar-link' %>
+              <% if current_user.admin %>
+              (admin)
+              <% end %>
             </strong>
-            <%= link_to "Logout, sure?", destroy_user_session_path, method: :delete, :class => 'navbar-link' %>
+            <%= link_to "Wyloguj", destroy_user_session_path, method: :delete, :class => 'navbar-link' %>
         <% else %>
-            <%= link_to "Login", new_user_session_path, :class => 'navbar-link' %> |
-            <%= link_to "Register", new_user_registration_path, :class => 'navbar-link' %>
+            <%= link_to "Logowanie", '#',:class => 'navbar-link', data: { :toggle => "modal", :target => "#loginModal" } %> |
+            <%= link_to "Rejestracja", new_user_registration_path, :class => 'navbar-link' %>
         <% end %>
-        </div>
+      </p>
+    </div>
   </div>
 </nav>
