@@ -19,7 +19,7 @@
                   <% elsif user_signed_in? %>
                       <p class="bg-warning">Nie możesz wziąć udziału w tym głosowaniu</p>
                   <% else %>
-                      <p class="bg-warning">Zaloguj się, aby sprawdzić czy możesz wziąć udział w tym głosowaniu.</p>
+                      <p class="bg-warning"><strong><%= link_to "Zaloguj się", '#', data: { :toggle => "modal", :target => "#loginModal" }, :class => 'text-success' %></strong>, aby sprawdzić czy możesz wziąć udział w tym głosowaniu.</p>
                   <% end %>
                 </div>
                 <div class="panel-footer">
