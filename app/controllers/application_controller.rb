@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
     redirect_to main_app.root_path unless current_user.admin? == true
   end
 
-  before_filter :configure_permitted_parameters, if: :devise_controller?
+  before_action :configure_permitted_parameters, if: :devise_controller?
 
   protected
 
