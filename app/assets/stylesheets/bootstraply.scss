@@ -90,23 +90,28 @@ $navbar-default-color: white;
 
 .overlay {
   position: absolute;
-  top: 0;
+  bottom: 100%;
   left: 0;
+  right: 0;
+  background-color: rgba(0,0,0,0.7);
+  overflow: hidden;
   width: 100%;
-  height: 100%;
-  //background: rgba(26, 93, 150, 0.81);
-  background: rgba(0, 0, 0, 0);
-  display: none;
-  transition: background 0.5s ease;
+  height:0;
+  transition: .5s ease;
 }
+
 .panel:hover .overlay {
-  display: block;
-  background: rgba(0, 0, 0, .7);
+  bottom: 0;
+  height: 100%;
 }
 
 .panel-heading{
   border-top-right-radius: 0px;
   border-top-left-radius: 0px;
+}
+
+.panel{
+  position: relative;
 }
 
 .panel-footer {
@@ -125,9 +130,4 @@ $navbar-default-color: white;
 
 .navbar-text{
   margin-right: 0px;
-}
-
-.mybutton{
-  position: absolute;
-  transition: opacity .35s ease
 }

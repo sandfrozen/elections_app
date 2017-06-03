@@ -1,5 +1,6 @@
   <div id="pudelka" class="transitions-enabled">
     <div class="pudelko">
+      <% if @actual_elections.present? %>
       <div class="page-header">
         <h3 class="text-center">Aktualnie trwające wybory:</h3>
         <h5 class="text-center"><span class="glyphicon glyphicon-file" aria-hidden="true"></span> Przystąp do głosowania.</h5>
@@ -13,13 +14,16 @@
                 </div>
                 <div class="panel-body">
                   <div class="overlay">
-                    <% if user_signed_in? && election.election_users.where("user_id = ?", current_user.id).present? %>
-                        <%= link_to 'Zagłosuj', vote_path(election), :class => "btn btn-success mybutton" %>
-                    <% elsif user_signed_in? %>
-                        <p class="bg-warning">Nie możesz wziąć udziału w tym głosowaniu</p>
+                    <div class="inoverlay">
+                      <% if user_signed_in? && election.election_users.where("user_id = ?", current_user.id).present? %>
+                          <%= link_to 'Zagłosuj', vote_path(election), :class => "btn btn-success" %>
+                      <% elsif user_signed_in? %>
+                          <!--<p class="bg-warning">Nie możesz wziąć udziału w tym głosowaniu</p>-->
+                          <%= link_to "Nie możesz wziąć udziału w tym głosowaniu", '/', :class => 'btn btn-danger' %>
                     <% else %>
-                        <p class="bg-warning"><strong><%= link_to "Zaloguj się", '#', data: { :toggle => "modal", :target => "#loginModal" }, :class => 'text-success' %></strong>, aby sprawdzić czy możesz wziąć udział w tym głosowaniu.</p>
-                    <% end %>
+                          <%= link_to "Zaloguj się, aby głosować", '#', data: { :toggle => "modal", :target => "#loginModal" }, :class => 'btn btn-warning' %>
+                      <% end %>
+                    </div>
                   </div>
                   <h4 class="text-success"><%= election.election_type.name %></h4>
                 </div>
@@ -31,11 +35,16 @@
             </div>
         <% end %>
       </div>
+      <% else %>
+      <div class="page-header">
+        <h3 class="text-center">Aktualnie nie odbywają się żadne wybory</h3>
+      </div>
+      <% end %>
     </div>
     <div class="pudelko">
+      <% if @past_elections.present? %>
       <div class="page-header">
         <h3 class="text-center">Zakończone wybory:</h3>
-
         <h5 class="text-center"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> Sprawdż wyniki.</h5>
       </div>
       <div id="elections  " class="transitions-enabled">
@@ -47,7 +56,9 @@
                 </div>
                 <div class="panel-body">
                   <div class="overlay">
-                    <%= link_to 'Wyniki', result_path(election), :class => "btn btn-warning" %>
+                    <div class="inoverlay">
+                      <%= link_to 'Wyniki', result_path(election), :class => "btn btn-warning" %>
+                    </div>
                   </div>
                   <h4 class="text-warning"><%= election.election_type.name %></h4>
                 </div>
@@ -58,8 +69,14 @@
             </div>
         <% end %>
       </div>
+      <% else %>
+      <div class="page-header">
+        <h3 class="text-center">Brak informacji o zakończonych wyborach</h3>
+      </div>
+      <% end %>
     </div>
     <div class="pudelko">
+      <% if @future_elections.present? %>
       <div class="page-header">
         <h3 class="text-center">Przyszłe wybory:</h3>
         <h5 class="text-center"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Sprawdź dodatkowe informacje.</h5>
@@ -74,7 +91,9 @@
                 </div>
                 <div class="panel-body">
                   <div class="overlay">
-                    <%= link_to 'Informacje', information_path(election), :class => "btn btn-primary" %>
+                    <div class="inoverlay">
+                      <%= link_to 'Informacje', information_path(election), :class => "btn btn-primary" %>
+                    </div>
                   </div>
                   <h4 class="text-primary"><%= election.election_type.name %></h4>
                 </div>
@@ -85,5 +104,10 @@
             </div>
         <% end %>
       </div>
+      <% else %>
+      <div class="page-header">
+        <h3 class="text-center">Brak nadchodzących wyborów</h3>
+      </div>
+      <% end %>
     </div>
   </div>

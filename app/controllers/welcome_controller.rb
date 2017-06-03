@@ -1,5 +1,5 @@
 class WelcomeController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:index]
+  skip_before_action :authenticate_user!, only: [:index, :election_result, :election_info]
 
   def index
     @past_elections = Election.where("end < ?", (Time.now))
@@ -9,7 +9,16 @@ class WelcomeController < ApplicationController
   end
 
   def vote
-    @election = Election.find(params[:id])
+    @isUserPermission = ElectionUser.where("User_id = ? and Election_id = ?", current_user.id, params[:id])
+
+    if @isUserPermission.present?
+      @election = Election.find(params[:id])
+    else
+      respond_to do |format|
+        format.html { redirect_to root_path, warning: 'Nie możesz głosować w tych wyborach' }
+        format.json { render :show, status: :created, location: @election }
+      end
+    end
   end
 
   def election_result
