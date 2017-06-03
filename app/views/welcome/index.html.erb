@@ -1,8 +1,8 @@
   <div id="pudelka" class="transitions-enabled">
     <div class="pudelko">
       <div class="page-header">
-        <h3>Aktualnie trwające wybory:</h3>
-        <h5>Przystąp do głosowania.</h5>
+        <h3 class="text-center">Aktualnie trwające wybory:</h3>
+        <h5 class="text-center"><span class="glyphicon glyphicon-file" aria-hidden="true"></span> Przystąp do głosowania.</h5>
       </div>
       <div id="elections" class="transitions-enabled">
         <% @actual_elections.each do |election| %>
@@ -12,14 +12,16 @@
                   <%= election.name %>
                 </div>
                 <div class="panel-body">
+                  <div class="overlay">
+                    <% if user_signed_in? && election.election_users.where("user_id = ?", current_user.id).present? %>
+                        <%= link_to 'Zagłosuj', vote_path(election), :class => "btn btn-success mybutton" %>
+                    <% elsif user_signed_in? %>
+                        <p class="bg-warning">Nie możesz wziąć udziału w tym głosowaniu</p>
+                    <% else %>
+                        <p class="bg-warning"><strong><%= link_to "Zaloguj się", '#', data: { :toggle => "modal", :target => "#loginModal" }, :class => 'text-success' %></strong>, aby sprawdzić czy możesz wziąć udział w tym głosowaniu.</p>
+                    <% end %>
+                  </div>
                   <h4 class="text-success"><%= election.election_type.name %></h4>
-                  <% if user_signed_in? && election.election_users.where("user_id = ?", current_user.id).present? %>
-                      <%= link_to 'Zagłosuj', vote_path(election), :class => "btn btn-success" %>
-                  <% elsif user_signed_in? %>
-                      <p class="bg-warning">Nie możesz wziąć udziału w tym głosowaniu</p>
-                  <% else %>
-                      <p class="bg-warning"><strong><%= link_to "Zaloguj się", '#', data: { :toggle => "modal", :target => "#loginModal" }, :class => 'text-success' %></strong>, aby sprawdzić czy możesz wziąć udział w tym głosowaniu.</p>
-                  <% end %>
                 </div>
                 <div class="panel-footer">
                   Rozpoczęte: <%= election.start.strftime('%d.%m.%Y o godzinie %H:%M') %><br/>
@@ -32,8 +34,9 @@
     </div>
     <div class="pudelko">
       <div class="page-header">
-        <h3>Zakończone wybory:</h3>
-        <h5>Sprawdż wyniki.</h5>
+        <h3 class="text-center">Zakończone wybory:</h3>
+
+        <h5 class="text-center"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> Sprawdż wyniki.</h5>
       </div>
       <div id="elections  " class="transitions-enabled">
         <% @past_elections.each do |election| %>
@@ -43,8 +46,10 @@
                   <%= election.name %>
                 </div>
                 <div class="panel-body">
+                  <div class="overlay">
+                    <%= link_to 'Wyniki', result_path(election), :class => "btn btn-warning" %>
+                  </div>
                   <h4 class="text-warning"><%= election.election_type.name %></h4>
-                  <%= link_to 'Wyniki', vote_path(election), :class => "btn btn-warning" %>
                 </div>
                 <div class="panel-footer">
                   Zostały zakończone: <%= election.end.strftime('%d.%m.%Y o godzinie %H:%M') %>
@@ -56,8 +61,8 @@
     </div>
     <div class="pudelko">
       <div class="page-header">
-        <h3>Przyszłe wybory:</h3>
-        <h5>Sprawdź dodatkowe informacje.</h5>
+        <h3 class="text-center">Przyszłe wybory:</h3>
+        <h5 class="text-center"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Sprawdź dodatkowe informacje.</h5>
       </div>
 
       <div id="elections" class="transitions-enabled">
@@ -68,8 +73,10 @@
                   <%= election.name %>
                 </div>
                 <div class="panel-body">
+                  <div class="overlay">
+                    <%= link_to 'Informacje', information_path(election), :class => "btn btn-primary" %>
+                  </div>
                   <h4 class="text-primary"><%= election.election_type.name %></h4>
-                  <%= link_to 'Informacje', vote_path(election), :class => "btn btn-primary" %>
                 </div>
                 <div class="panel-footer">
                   Rozpoczynają się: <%= election.start.strftime('%d.%m.%Y o godzinie %H:%M') %><br/>

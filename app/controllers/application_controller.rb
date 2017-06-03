@@ -5,7 +5,6 @@ class ApplicationController < ActionController::Base
 
   before_action :set_locale
 
-
   helper_method :resource_name, :resource, :devise_mapping
 
   def resource_name
@@ -19,8 +18,6 @@ class ApplicationController < ActionController::Base
   def devise_mapping
     @devise_mapping ||= Devise.mappings[:user]
   end
-
-
 
   def authenticate_admin!
     redirect_to main_app.root_path unless current_user.admin? == true

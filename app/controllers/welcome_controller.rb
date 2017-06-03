@@ -12,6 +12,14 @@ class WelcomeController < ApplicationController
     @election = Election.find(params[:id])
   end
 
+  def election_result
+    @election = Election.find(params[:id])
+  end
+
+  def election_info
+    @election = Election.find(params[:id])
+  end
+
   def your_candidatures
     @elections = Election.joins(:election_users).where("election_user.user_id = ?", current_user.id)
     @current_user_id = current_user.id

@@ -8,6 +8,9 @@ Rails.application.routes.draw do
     get '/welcome/your_candidatures'
     get '/vote/:id' => 'welcome#vote', as: 'vote'
 
+    get '/election_result/:id' => 'welcome#election_result', as: 'result'
+    get '/election_info/:id' => 'welcome#election_info', as: 'information'
+
     devise_for :users
 
     mount RailsAdmin::Engine => '/admin', as: 'rails_admin'

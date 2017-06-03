@@ -935,7 +935,7 @@ function markFunction( fn ) {
 
 /**
  * Support testing using an element
- * @param {Function} fn Passed the created div and expects a boolean result
+ * @param {Function} fn Passed the created div and expects a boolean election_result
  */
 function assert( fn ) {
 	var div = document.createElement("div");
@@ -2489,7 +2489,7 @@ function matcherFromGroupMatchers( elementMatchers, setMatchers ) {
 			// equals `i`), unless we didn't visit _any_ elements in the above loop because we have
 			// no element matchers and no seed.
 			// Incrementing an initially-string "0" `i` allows `i` to remain a string only in that
-			// case, which will result in a "00" `matchedCount` that differs from `i` but is also
+			// case, which will election_result in a "00" `matchedCount` that differs from `i` but is also
 			// numerically zero.
 			if ( bySet && i !== matchedCount ) {
 				j = 0;
@@ -10631,7 +10631,7 @@ jQuery.fn.load = function( url, params, callback ) {
 				// Exclude scripts to avoid IE 'Permission Denied' errors
 				jQuery( "<div>" ).append( jQuery.parseHTML( responseText ) ).find( selector ) :
 
-				// Otherwise use the full result
+				// Otherwise use the full election_result
 				responseText );
 
 		// If the request succeeds, this function gets "data", "status", "jqXHR"
@@ -13508,7 +13508,7 @@ Copyright (c) 2012-2013 Sasha Koss & Rico Sta. Cruz
       $('form input[name="' + rails.csrfParam() + '"]').val(rails.csrfToken());
     },
 
-    // Triggers an event on an element and returns false if the event result is false
+    // Triggers an event on an element and returns false if the event election_result is false
     fire: function(obj, name, data) {
       var event = $.Event(name);
       obj.trigger(event, data);
