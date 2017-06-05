@@ -29,7 +29,7 @@
                 </div>
                 <div class="panel-footer">
                   Rozpoczęte: <%= election.start.strftime('%d.%m.%Y o godzinie %H:%M') %><br/>
-                  Trwają do: <%= election.end.strftime('%d.%m.%Y o godzinie %H:%M') %>
+                  Trwają do: <%= election.stop.strftime('%d.%m.%Y o godzinie %H:%M') %>
                 </div>
               </div>
             </div>
@@ -63,7 +63,7 @@
                   <h4 class="text-warning"><%= election.election_type.name %></h4>
                 </div>
                 <div class="panel-footer">
-                  Zostały zakończone: <%= election.end.strftime('%d.%m.%Y o godzinie %H:%M') %>
+                  Zostały zakończone: <%= election.stop.strftime('%d.%m.%Y o godzinie %H:%M') %>
                 </div>
               </div>
             </div>

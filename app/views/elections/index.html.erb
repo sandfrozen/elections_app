@@ -32,9 +32,9 @@
 
     <tbody>
       <%= content_tag_for(:tr, @elections) do |election| %>
-        <% if election.start <= Time.now && election.end >= Time.now %>
+        <% if election.start <= Time.now && election.stop >= Time.now %>
             <tr style="border: solid indianred">
-        <% elsif election.end < Time.now %>
+        <% elsif election.stop < Time.now %>
             <tr style="border: solid #4cae4c">
         <% elsif election.start > Time.now %>
           <tr style="border: solid dodgerblue">
@@ -46,7 +46,7 @@
             <td><%= election.election_type.name %></td>
             <td><%= election.info %></td>
             <td><%= election.start %></td>
-            <td><%= election.end %></td>
+            <td><%= election.stop %></td>
             <td><%= election.max_votes %></td>
             <td><%= election.election_users.all.group(:user_id).count.size %></td>
             <td><%= election.election_users.where("vote not null").group(:user_id).count.size %></td>

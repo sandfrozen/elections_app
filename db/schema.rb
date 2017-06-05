@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170521124039) do
+ActiveRecord::Schema.define(version: 20170605225440) do
 
   create_table "election_candidates", force: :cascade do |t|
     t.string   "party"
@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 20170521124039) do
     t.string   "name"
     t.text     "info"
     t.datetime "start"
-    t.datetime "end"
+    t.datetime "stop"
     t.integer  "max_votes"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false

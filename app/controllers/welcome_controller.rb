@@ -2,8 +2,8 @@ class WelcomeController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :election_result, :election_info]
 
   def index
-    @past_elections = Election.where("end < ?", (Time.now))
-    @actual_elections = Election.where("start < ? AND end > ?", (Time.now), (Time.now))
+    @past_elections = Election.where("stop < ?", (Time.now))
+    @actual_elections = Election.where("start < ? AND stop > ?", (Time.now), (Time.now))
     @future_elections = Election.where("start > ?", (Time.now))
 
   end

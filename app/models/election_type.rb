@@ -1,3 +1,3 @@
 class ElectionType < ApplicationRecord
-  has_many :Elections
+  has_many :elections
 end
