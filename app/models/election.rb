@@ -1,5 +1,5 @@
 class Election < ApplicationRecord
-  has_many :election_users
-  has_many :election_candidates
-  belongs_to :election_type
+  has_many :Election_users
+  has_many :Election_candidates
+  belongs_to :Election_type
 end

@@ -4,6 +4,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :election_users
-  has_many :election_candidates
+  has_many :Election_users
+  has_many :Election_candidates
 end
