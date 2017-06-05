@@ -22,13 +22,18 @@
     </thead>
 
     <tbody>
-        <%= content_tag_for(:tr, @election.election_candidates.find_each) do |candidate| %>
-        <td><input type="checkbox" name="candidate"></td>
-        <td><%= candidate.User.name %> <%= candidate.User.surname %></td>
-        <td><%= candidate.party %></td>
-        <td><%= candidate.place %></td>
-        <td><%= candidate.place %></td>
-        <% end %>
+    <%= form_tag('/welcome/save_vote') do %>
+          <%= hidden_field_tag :election_id, @election.id %>
+          <%= content_tag_for(:tr, @election.election_candidates.find_each) do |candidate| %>
+            <td><%= check_box_tag "candidate[]", candidate.User.id %></td>
+
+            <td><%= candidate.User.name %> <%= candidate.User.surname %></td>
+            <td><%= candidate.party %></td>
+            <td><%= candidate.place %></td>
+            <td><%= candidate.place %></td>
+          <% end %>
+    <%= submit_tag "Zagłosuj"%>
+    <% end %>
     </tbody>
   </table>
 </div>

@@ -21,6 +21,23 @@ class WelcomeController < ApplicationController
     end
   end
 
+  def save_vote
+    candidates = params[:candidate]
+      for candidate in candidates
+        el_user = ElectionUser.new
+        el_user.User = User.find(current_user.id)
+        el_user.Election = Election.find(params[:election_id])
+        el_user.vote = candidate
+        puts candidate
+        el_user.save
+        puts el_user.errors.full_messages
+      end
+      respond_to do |format|
+        format.html { redirect_to root_path, warning: 'Głos oddany' }
+        format.json { render :show, status: :created, location: @election }
+        end
+  end
+
   def election_result
     @election = Election.find(params[:id])
   end
