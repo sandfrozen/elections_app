@@ -37,8 +37,8 @@
             <td><%= election.start %></td>
             <td><%= election.stop %></td>
             <td><%= election.max_votes %></td>
-            <td><%= @election_candidates.where("election_id = ?", election).count %></td>
-            <td><%= @election_users.where("election_id = ?", election).count %></td>
+            <td><%= @election_candidates.where("Election_id = ?", election).count %></td>
+            <td><%= @election_users.where("Election_id = ?", election).count %></td>
             <td><%= link_to 'Edytuj', edit_election_path(election) %></td>
             <td><%= link_to 'Usuń', election, method: :delete, data: { confirm: 'Are you sure?' } %></td>
           </tr>
