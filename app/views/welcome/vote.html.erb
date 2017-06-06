@@ -10,6 +10,7 @@
 <input type="number" style="display: none" id="max-votes" value="<%= @election.max_votes %>">
 
 <div class="table-responsive col-md-12">
+  <%= form_tag('/welcome/save_vote') do %>
   <table class="table table-hover">
     <thead>
     <tr>
@@ -21,9 +22,10 @@
     </tr>
     </thead>
 
+
     <tbody>
-    <%= form_tag('/welcome/save_vote') do %>
           <%= hidden_field_tag :election_id, @election.id %>
+          <%= hidden_field_tag :max_votes, @election.max_votes %>
           <%= content_tag_for(:tr, @election.election_candidates.find_each) do |candidate| %>
             <td><%= check_box_tag "candidate[]", candidate.User.id %></td>
 
@@ -32,8 +34,10 @@
             <td><%= candidate.place %></td>
             <td><%= candidate.place %></td>
           <% end %>
-    <%= submit_tag "Zagłosuj"%>
-    <% end %>
+
     </tbody>
+
   </table>
+        <%= submit_tag "Zagłosuj", class:"btn btn-success"%>
+    <% end %>
 </div>
