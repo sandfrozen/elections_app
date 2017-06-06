@@ -48,8 +48,8 @@
             <td><%= election.start %></td>
             <td><%= election.stop %></td>
             <td><%= election.max_votes %></td>
-            <td><%= election.election_users.all.group(:user_id).count.size %></td>
-            <td><%= election.election_users.where("vote not null").group(:user_id).count.size %></td>
+            <td><%= election.election_users.all.group("user_id").count.size %></td>
+            <td><%= election.election_users.where("vote not null").group("user_id").count.size %></td>
             <td><%= link_to 'Edytuj', edit_election_path(election) %></td>
             <td><%= link_to 'Usuń', election, method: :delete, data: { confirm: 'Are you sure?' } %></td>
           </tr>
