@@ -9,6 +9,8 @@ class ElectionsController < ApplicationController
     @past_elections = Election.where("stop < ?", (Time.now))
     @actual_elections = Election.where("start < ? AND stop > ?", (Time.now), (Time.now))
     @future_elections = Election.where("start > ?", (Time.now))
+    @election_users = ElectionUser.all
+    @election_candidates = ElectionCandidate.all
   end
 
   # GET /elections/1
