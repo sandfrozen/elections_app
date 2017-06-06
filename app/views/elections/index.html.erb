@@ -20,8 +20,6 @@
         <th>Start</th>
         <th>Koniec</th>
         <th>Max ilość głosów</th>
-        <th>Ilość kandydatów</th>
-        <th>Ilość osób uprawnionych</th>
         <th></th>
         <th></th>
       </tr>
@@ -37,8 +35,6 @@
             <td><%= election.start %></td>
             <td><%= election.stop %></td>
             <td><%= election.max_votes %></td>
-            <td><%= election.election_candidates.count %></td>
-            <td><%= election.election_users.count %></td>
             <td><%= link_to 'Edytuj', edit_election_path(election) %></td>
             <td><%= link_to 'Usuń', election, method: :delete, data: { confirm: 'Are you sure?' } %></td>
           </tr>
@@ -57,8 +53,6 @@
         <th>Start</th>
         <th>Koniec</th>
         <th>Max ilość głosów</th>
-        <th>Ilość kandydatów</th>
-        <th>Ilość osób uprawnionych</th>
         <th></th>
         <th></th>
       </tr>
@@ -74,8 +68,6 @@
           <td><%= election.start %></td>
           <td><%= election.stop %></td>
           <td><%= election.max_votes %></td>
-          <td><%= election.election_candidates.count %></td>
-          <td><%= election.election_users.count %></td>
           <td><%= link_to 'Edytuj', edit_election_path(election) %></td>
           <td><%= link_to 'Usuń', election, method: :delete, data: { confirm: 'Are you sure?' } %></td>
           </tr>
@@ -93,8 +85,6 @@
       <th>Start</th>
       <th>Koniec</th>
       <th>Max ilość głosów</th>
-      <th>Ilość kandydatów</th>
-      <th>Ilość osób uprawnionych</th>
       <th></th>
       <th></th>
     </tr>
@@ -110,8 +100,6 @@
           <td><%= election.start %></td>
           <td><%= election.stop %></td>
           <td><%= election.max_votes %></td>
-          <td><%= election.election_candidates.count %></td>
-          <td><%= election.election_users.count %></td>
           <td><%= link_to 'Edytuj', edit_election_path(election) %></td>
           <td><%= link_to 'Usuń', election, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
