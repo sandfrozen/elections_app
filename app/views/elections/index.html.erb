@@ -8,12 +8,9 @@
   <%= render 'form' %>
 </div>
 
-<div class="page-header">
-  <h3>Wybory:</h3>
-</div>
-
 <div class="table-responsive">
   <table class="table table-striped table-bordered table-hover">
+    <h3>Trwające</h3>
     <thead>
       <tr>
         <th>id</th>
@@ -23,22 +20,16 @@
         <th>Start</th>
         <th>Koniec</th>
         <th>Max ilość głosów</th>
+        <th>Ilość kandydatów</th>
+        <th>Ilość osób uprawnionych</th>
         <th></th>
         <th></th>
       </tr>
     </thead>
 
     <tbody>
-      <%= content_tag_for(:tr, @elections) do |election| %>
-        <% if election.start <= Time.now && election.stop >= Time.now %>
-            <tr style="border: solid indianred">
-        <% elsif election.stop < Time.now %>
-            <tr style="border: solid #4cae4c">
-        <% elsif election.start > Time.now %>
-          <tr style="border: solid dodgerblue">
-        <% else %>
+      <%= content_tag_for(:tr, @actual_elections) do |election| %>
           <tr>
-        <% end %>
             <td><%= election.id %></td>
             <td><%= election.name %></td>
             <td><%= election.election_type.name %></td>
@@ -46,9 +37,84 @@
             <td><%= election.start %></td>
             <td><%= election.stop %></td>
             <td><%= election.max_votes %></td>
+            <td><%= election.election_candidates.count %></td>
+            <td><%= election.election_users.count %></td>
             <td><%= link_to 'Edytuj', edit_election_path(election) %></td>
             <td><%= link_to 'Usuń', election, method: :delete, data: { confirm: 'Are you sure?' } %></td>
           </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+    <table class="table table-striped table-bordered table-hover">
+      <h3>Zakończone</h3>
+      <thead>
+      <tr>
+        <th>id</th>
+        <th>Nazwa</th>
+        <th>Typ wyborów</th>
+        <th>Informacje</th>
+        <th>Start</th>
+        <th>Koniec</th>
+        <th>Max ilość głosów</th>
+        <th>Ilość kandydatów</th>
+        <th>Ilość osób uprawnionych</th>
+        <th></th>
+        <th></th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <%= content_tag_for(:tr, @past_elections) do |election| %>
+          <tr>
+          <td><%= election.id %></td>
+          <td><%= election.name %></td>
+          <td><%= election.election_type.name %></td>
+          <td><%= election.info %></td>
+          <td><%= election.start %></td>
+          <td><%= election.stop %></td>
+          <td><%= election.max_votes %></td>
+          <td><%= election.election_candidates.count %></td>
+          <td><%= election.election_users.count %></td>
+          <td><%= link_to 'Edytuj', edit_election_path(election) %></td>
+          <td><%= link_to 'Usuń', election, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+      <% end %>
+      </tbody>
+  </table>
+  <table class="table table-striped table-bordered table-hover">
+    <h3>Przyszłe</h3>
+    <thead>
+    <tr>
+      <th>id</th>
+      <th>Nazwa</th>
+      <th>Typ wyborów</th>
+      <th>Informacje</th>
+      <th>Start</th>
+      <th>Koniec</th>
+      <th>Max ilość głosów</th>
+      <th>Ilość kandydatów</th>
+      <th>Ilość osób uprawnionych</th>
+      <th></th>
+      <th></th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <%= content_tag_for(:tr, @future_elections) do |election| %>
+        <tr>
+          <td><%= election.id %></td>
+          <td><%= election.name %></td>
+          <td><%= election.election_type.name %></td>
+          <td><%= election.info %></td>
+          <td><%= election.start %></td>
+          <td><%= election.stop %></td>
+          <td><%= election.max_votes %></td>
+          <td><%= election.election_candidates.count %></td>
+          <td><%= election.election_users.count %></td>
+          <td><%= link_to 'Edytuj', edit_election_path(election) %></td>
+          <td><%= link_to 'Usuń', election, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
     <% end %>
     </tbody>
   </table>

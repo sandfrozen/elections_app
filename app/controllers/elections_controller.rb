@@ -6,7 +6,9 @@ class ElectionsController < ApplicationController
   # GET /elections.json
   def index
     @election = Election.new
-    @elections = Election.order(:start)
+    @past_elections = Election.where("stop < ?", (Time.now))
+    @actual_elections = Election.where("start < ? AND stop > ?", (Time.now), (Time.now))
+    @future_elections = Election.where("start > ?", (Time.now))
   end
 
   # GET /elections/1
