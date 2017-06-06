@@ -37,8 +37,8 @@
             <td><%= election.start %></td>
             <td><%= election.stop %></td>
             <td><%= election.max_votes %></td>
-            <td><%= election.election_candidates.count %></td>
-            <td><%= election.election_users.count %></td>
+            <td><%= election.election_candidate_ids.count %></td>
+            <td><%= election.election_user_ids.count %></td>
             <td><%= link_to 'Edytuj', edit_election_path(election) %></td>
             <td><%= link_to 'Usuń', election, method: :delete, data: { confirm: 'Are you sure?' } %></td>
           </tr>
@@ -74,8 +74,8 @@
           <td><%= election.start %></td>
           <td><%= election.stop %></td>
           <td><%= election.max_votes %></td>
-          <td><%= election.election_candidates.count %></td>
-          <td><%= election.election_users.count %></td>
+          <td><%= election.election_candidate_ids.count %></td>
+          <td><%= election.election_user_ids.count %></td>
           <td><%= link_to 'Edytuj', edit_election_path(election) %></td>
           <td><%= link_to 'Usuń', election, method: :delete, data: { confirm: 'Are you sure?' } %></td>
           </tr>
@@ -110,8 +110,8 @@
           <td><%= election.start %></td>
           <td><%= election.stop %></td>
           <td><%= election.max_votes %></td>
-          <td><%= election.election_candidates.count %></td>
-          <td><%= election.election_users.count %></td>
+          <td><%= election.election_candidate_ids.count %></td>
+          <td><%= election.election_user_ids.count %></td>
           <td><%= link_to 'Edytuj', edit_election_path(election) %></td>
           <td><%= link_to 'Usuń', election, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
