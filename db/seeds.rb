@@ -64,8 +64,8 @@ puts "<<<< <<< << < SEED > >> >>> >>>> Dodano #{ElectionType.count} typów wybor
 election_a = Election.create!( name: "Nazwa Testowa Wyborów", info: "Informacja", start: (Time.now), stop: (Time.now)+2.days, max_votes: 1, election_type: el_type)
 puts "<<<< <<< << < SEED > >> >>> >>>> Dodano #{Election.count} wyborów"
 
-ElectionUser.create!( vote: 1, User: user_a, Election: election_a)
+ElectionUser.create!( vote: 1, user: user_a, election: election_a)
 puts "<<<< <<< << < SEED > >> >>> >>>> Dodano #{ElectionUser.count} electionuser"
 
-ElectionCandidate.create!(party: 1, list: 1, place: 1, User: user_a, Election: election_a)
+ElectionCandidate.create!(party: 1, list: 1, place: 1, user: user_a, election: election_a)
 puts "<<<< <<< << < SEED > >> >>> >>>> Dodano #{ElectionCandidate.count} electioncandidate"
