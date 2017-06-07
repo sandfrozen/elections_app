@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
     get '/welcome/your_candidatures'
     post '/welcome/save_vote'
+    post 'generate' => 'welcome#generate', as: :generate
     get '/vote/:id' => 'welcome#vote', as: 'vote'
 
     get '/election_result/:id' => 'welcome#election_result', as: 'result'

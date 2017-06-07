@@ -1,6 +1,8 @@
 class WelcomeController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :election_result, :election_info]
 
+  @@electionID = 0
+
   def index
     @past_elections = Election.where("stop < ?", (Time.now)).order(start: :desc)
     @actual_elections = Election.where("start < ? AND stop > ?", (Time.now), (Time.now)).order(start: :desc)
@@ -44,6 +46,8 @@ class WelcomeController < ApplicationController
   end
 
   def election_result
+
+    @@electionID = params[:id]
     @election = Election.find(params[:id])
     @election_voters = ElectionUser.select(:User_id).where("Election_id = ?",params[:id]).uniq.to_a
     @election_votes = ElectionUser.select(:User_id).where("Election_id = ? and vote is not null",params[:id]).uniq.to_a
@@ -63,4 +67,37 @@ class WelcomeController < ApplicationController
     #puts "elections count: #{@elections.size}"
   end
 
+  def generate
+    Prawn::Document.generate("electionresults.pdf") do
+      election = Election.find(@@electionID)
+      election_voters = ElectionUser.select(:User_id).where("Election_id = ?",@@electionID).uniq.to_a.count.to_s
+      election_votes = ElectionUser.select(:User_id).where("Election_id = ? and vote is not null",@@electionID).uniq.to_a.count.to_s
+      results = ElectionUser.group(:vote).where("Election_id = ?",@@electionID).order('count_all desc').count.to_a
+      frequency = election_votes.to_f / election_voters.to_f * 100
+      candidates = User.all
+      text "Wybory: " + election.name
+      text "Typ wyborow: " + election.election_type.name
+      text "Ilosc osob uprawnionych do glosowania: " + election_voters
+      text "Ilosc osob ktore oddaly glos: " + election_votes
+      text "Frekwencja: " + frequency.to_s + "%"
+      text ""
+      text ""
+      text "Wyniki: "
+      i=0
+      results.each do |result|
+          if result[0] == nil
+            i-=1
+          else
+            if i==0
+                text "Wygrany: " + candidates.where("id = ?",result[0]).to_a.first.name + " " + candidates.where("id = ?",result[0]).to_a.first.surname + ": " + result[1].to_s
+            else
+                text candidates.where("id = ?",result[0]).to_a.first.name + " " + candidates.where("id = ?",result[0]).to_a.first.surname + ": " + result[1].to_s
+            end
+          end
+        i+=1
+      end
+    end
+    redirect_to '/electionresults.pdf'
+
+  end
 end
