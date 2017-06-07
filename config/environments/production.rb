@@ -85,4 +85,6 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   config.action_mailer.default_url_options = { host: 'elections-app.herokuapp.com' }
+
+  config.action_dispatch.x_sendfile_header = "X-Sendfile" # for apache
 end
