@@ -1,17 +1,17 @@
 <style>
   #map {
-    height: 200px;
+    height: 400px;
     width: 100%;
   }
 </style>
 
-<h3> Aplikacja stworzona przez studentów wydziału informatyki Politechniki Białostockiej</h3>
+<h3 style="text-align: center"> Aplikacja stworzona przez studentów wydziału informatyki Politechniki Białostockiej</h3>
 <h3> Twórcy:</h3>
-<h3> - Szymon Bakunowicz</h3>
+<h3 > - Szymon Bakunowicz</h3>
 <h3> - Marcin Bogdan</h3>
 <h3> - Tomasz Busłowski</h3>
 <h3> - Adam Sujeta</h3>
-
+<hr>
 <h3> Nasze biuro znajduje się: </h3>
 
 <div id="map"></div>
@@ -19,7 +19,7 @@
     function initMap() {
         var uluru = {lat: 53.117603, lng: 23.145343};
         var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 4,
+            zoom: 10,
             center: uluru
         });
         var marker = new google.maps.Marker({
