@@ -86,5 +86,5 @@ Rails.application.configure do
 
   config.action_mailer.default_url_options = { host: 'elections-app.herokuapp.com' }
 
-  config.action_dispatch.x_sendfile_header = "X-Sendfile" # for apache
+  config.action_dispatch.x_sendfile_header = "X-Accel-Redirect" # for no-apache
 end
