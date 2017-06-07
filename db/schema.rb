@@ -16,12 +16,12 @@ ActiveRecord::Schema.define(version: 20170605225440) do
     t.string   "party"
     t.integer  "list"
     t.integer  "place"
-    t.integer  "User_id"
-    t.integer  "Election_id"
+    t.integer  "user_id"
+    t.integer  "election_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.index ["Election_id"], name: "index_election_candidates_on_Election_id"
-    t.index ["User_id"], name: "index_election_candidates_on_User_id"
+    t.index ["election_id"], name: "index_election_candidates_on_election_id"
+    t.index ["user_id"], name: "index_election_candidates_on_user_id"
   end
 
   create_table "election_types", force: :cascade do |t|
@@ -32,12 +32,12 @@ ActiveRecord::Schema.define(version: 20170605225440) do
 
   create_table "election_users", force: :cascade do |t|
     t.integer  "vote"
-    t.integer  "User_id"
-    t.integer  "Election_id"
+    t.integer  "user_id"
+    t.integer  "election_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.index ["Election_id"], name: "index_election_users_on_Election_id"
-    t.index ["User_id"], name: "index_election_users_on_User_id"
+    t.index ["election_id"], name: "index_election_users_on_election_id"
+    t.index ["user_id"], name: "index_election_users_on_user_id"
   end
 
   create_table "elections", force: :cascade do |t|
