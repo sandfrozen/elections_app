@@ -70,7 +70,7 @@ class WelcomeController < ApplicationController
   def generate
     Prawn::Document.generate("electionresults.pdf") do
       font_families.update("RobotoSlab" =>{
-          :normal => Rails.root.join("/app/assets/fonts/RobotoSlab-Regular.ttf").to_s,
+          :normal => Rails.root.join("app/assets/fonts/RobotoSlab-Regular.ttf").to_s,
       })
       font "RobotoSlab"
       election = Election.find(@@electionID)
