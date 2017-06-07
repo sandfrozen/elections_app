@@ -98,6 +98,6 @@ class WelcomeController < ApplicationController
       end
     end
     pdf_filename = File.join(Rails.root, "electionresults.pdf")
-    send_file(pdf_filename, :filename => "electionresults.pdf", :type => "application/pdf")
+    send_file("#{Rails.root}/electionresults.pdf", :filename => "electionresults.pdf", :type => "application/pdf")
   end
 end
