@@ -7,8 +7,6 @@ git_source(:github) do |repo_name|
 end
 
 
-
-
 # Use SCSS for stylesheets
 
 
