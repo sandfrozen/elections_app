@@ -19,9 +19,9 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">O mnie<span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><a href="/welcome/your_candidatures">Moje kandydatury</a></li>
-                <li><a href="#">Oddane głosy</a></li>
-                <li role="separator" class="divider"></li>
+                <!--<li><a href="/welcome/your_candidatures">Moje kandydatury</a></li>-->
+                <!--<li><a href="#">Oddane głosy</a></li>-->
+                <!--<li role="separator" class="divider"></li>-->
                 <li><a href="/users/edit">Moje dane</a></li>
                 <li role="separator" class="divider"></li>
                 <li><a href=<%= destroy_user_session_path %> data-method="delete">Wyloguj</a></li>
@@ -36,7 +36,7 @@
                     <li><a href=<%= elections_path %>>Wybory</a></li>
                     <li role="separator" class="divider"></li>
                     <li><a href=<%= election_users_path %>>Uprawnienia osób</a></li>
-                    <li><a href=<%= election_candidates_path %>>Kandydaci</a></li>
+                    <!--<li><a href=<%= election_candidates_path %>>Kandydaci</a></li>-->
                     <li role="separator" class="divider"></li>
                     <li><a href="/admin"><span style="color:red">Zewnętrzny panel administratora</span></a></li>
                   </ul>
