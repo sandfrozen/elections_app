@@ -15,7 +15,7 @@ class WelcomeController < ApplicationController
       @election = Election.find(params[:id])
     else
       respond_to do |format|
-        format.html { redirect_to root_path, warning: 'Nie możesz głosować w tych wyborach' }
+        format.html { redirect_to root_path, notice: 'Nie możesz głosować w tych wyborach' }
         format.json { render :show, status: :created, location: @election }
       end
     end

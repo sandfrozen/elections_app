@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  scope "(:locale)", locale: /#{I18n.available_locales.join("|")}/ do
+  #scope "(:locale)", locale: /#{I18n.available_locales.join("|")}/ do
     resources :election_types
     root to: 'welcome#index'
 
@@ -20,6 +20,6 @@ Rails.application.routes.draw do
     resources :election_users
 
     resources :elections
-  end
+  #end
 
 end
