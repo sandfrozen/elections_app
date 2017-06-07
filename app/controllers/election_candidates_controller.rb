@@ -70,6 +70,6 @@ class ElectionCandidatesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def election_candidate_params
-      params.require(:election_candidate).permit(:party, :list, :place, :User_id, :Election_id)
+      params.require(:election_candidate).permit(:party, :list, :place, :user_id, :election_id)
     end
 end

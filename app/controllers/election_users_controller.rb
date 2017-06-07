@@ -71,6 +71,6 @@ class ElectionUsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def election_user_params
-      params.require(:election_user).permit(:vote, :User_id, :Election_id)
+      params.require(:election_user).permit(:vote, :user_id, :election_id)
     end
 end

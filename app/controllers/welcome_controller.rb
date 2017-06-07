@@ -11,7 +11,7 @@ class WelcomeController < ApplicationController
   end
 
   def vote
-    @isUserPermission = ElectionUser.where("User_id = ? and Election_id = ? and vote is ?", current_user.id, params[:id], nil).to_a
+    @isUserPermission = ElectionUser.where("user_id = ? and election_id = ? and vote is ?", current_user.id, params[:id], nil).to_a
     if @isUserPermission.length >0
       @election = Election.find(params[:id])
     else
@@ -24,7 +24,7 @@ class WelcomeController < ApplicationController
 
   def save_vote
     candidates = params[:candidate]
-    old_users = ElectionUser.where("User_id = ? and Election_id = ? and vote is ?", current_user.id, params[:election_id], nil).to_a
+    old_users = ElectionUser.where("user_id = ? and election_id = ? and vote is ?", current_user.id, params[:election_id], nil).to_a
     old_users.each { |old_user|
       old_user.destroy
     }
@@ -49,10 +49,10 @@ class WelcomeController < ApplicationController
 
     @@electionID = params[:id]
     @election = Election.find(params[:id])
-    @election_voters = ElectionUser.select(:user_id).where("Election_id = ?",params[:id]).uniq.to_a
-    @election_votes = ElectionUser.select(:user_id).where("Election_id = ? and vote is not null",params[:id]).uniq.to_a
+    @election_voters = ElectionUser.select(:user_id).where("election_id = ?",params[:id]).uniq.to_a
+    @election_votes = ElectionUser.select(:user_id).where("election_id = ? and vote is not null",params[:id]).uniq.to_a
     @frequency = @election_votes.length.to_f / @election_voters.length.to_f * 100
-    @results = ElectionUser.group(:vote).where("Election_id = ?",params[:id]).order('count_all desc').count.to_a
+    @results = ElectionUser.group(:vote).where("election_id = ?",params[:id]).order('count_all desc').count.to_a
     @candidates = User.all
   end
 
