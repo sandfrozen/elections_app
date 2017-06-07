@@ -33,8 +33,8 @@ class WelcomeController < ApplicationController
     (0..candidates.length-1).each { |i|
       if i < max
         el_user = ElectionUser.new
-        el_user.User = User.find(current_user.id)
-        el_user.Election = Election.find(params[:election_id])
+        el_user.user = User.find(current_user.id)
+        el_user.election = Election.find(params[:election_id])
         el_user.vote = candidates[i]
         el_user.save
       end
