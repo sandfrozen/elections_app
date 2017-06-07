@@ -14,58 +14,80 @@ User.destroy_all
 user_a = User.create!( name: 'Admin', surname: 'Adminadmi', email: 'admin@ad.pl', pesel: 40041440404, admin: true, password: 'adminmind') #1
 User.create!( name: 'Tomasz', surname: 'Buslowski', email: 'tombs@wp.pl', pesel: 94091594949, password: 'Asd123') #2
 
-# imie_m = ['Jan', 'Andrzej', 'Piotr', 'Krzysztof', 'Stanisław', 'Tomasz', 'Paweł', 'Józef', 'Marcin', 'Marek', 'Michał',
-#           'Grzegorz', 'Jerzy', 'Tadeusz', 'Adam', 'Łukasz', 'Zbigniew', 'Ryszard', 'Dariusz', 'Henryk', 'Mariusz',
-#           'Kazimierz', 'Wojciech', 'Robert', 'Mateusz', 'MarSian', 'Rafał', 'Jacek', 'Janusz', 'Mirosław', 'Maciej',
-#           'Sławomir', 'Jarosław', 'Kamil', 'Wiesław', 'Roman', 'Władysław', 'Jakub', 'Artur', 'Zdzisław', 'Edward',
-#           'Mieczysław', 'Damian', 'Dawid', 'Przemysław', 'Sebastian', 'Czesław', 'Leszek', 'Daniel', 'Waldemar' ]
-#
-# nazwisko_m = [ 'Nowak', 'Kowalski', 'Wiśniewski', 'Dąbrowski', 'Lewandowski', 'Wójcik', 'Kamiński', 'Kowalczyk',
-#                'Zieliński', 'Szymański', 'Woźniak', 'Kozłowski', 'Jankowski', 'Wojciechowski', 'Kwiatkowski' ]
-#
-# imie_m.each do |i|
-#   nazwisko_m.each do |n|
-#     y = rand(30..99).to_s
-#     m = rand(1..12).to_s
-#     d = rand(1..30).to_s
-#     k = rand(10000..49999).to_s
-#     pesel1 = y + m.rjust(2, '0') + d.rjust(2, '0') + k
-#     User.create!( name: i, surname: n, email: "#{i}.#{n}.#{y}@wp.pl", pesel: pesel1, password: "#{i}#{n}" )
-#   end
-# end
-#
-# imie_d = [ 'Anna', 'Maria', 'Katarzyna', 'Małgorzata', 'Agnieszka', 'Krystyna', 'Barbara', 'Ewa', 'Elżbieta', 'Zofia',
-#            'Janina', 'Teresa', 'Joanna', 'Magdalena', 'Monika', 'Jadwiga', 'Danuta', 'Irena', 'Halina', 'Helena',
-#            'Beata', 'Aleksandra', 'Marta', 'Dorota', 'Marianna', 'Grażyna', 'Stanisława', 'Iwona', 'Karolina', 'Bożena',
-#            'Urszula', 'Justyna', 'Renata', 'Alicja', 'Paulina', 'Sylwia', 'Natalia', 'Wanda', 'Agata', 'Aneta',
-#            'Izabela', 'Ewelina', 'Marzena', 'Wiesława', 'Genowefa', 'Patrycja', 'Kazimiera', 'Edyta', 'Stefania' ]
-#
-# nazwisko_d = [ 'Nowak', 'Kowalska', 'Wiśniewska', 'Dąbrowska', 'Lewandowska', 'Wójcik', 'Kamińska', 'Kowalczyk',
-#                'Zielińska', 'Szymańska', 'Woźniak', 'Kozłowska', 'Jankowska', 'Wojciechowska', 'Kwiatkowska' ]
-# imie_d.each do |i|
-#   nazwisko_d.each do |n|
-#     y = rand(30..99).to_s
-#     m = rand(1..12).to_s
-#     d = rand(1..30).to_s
-#     k = rand(50000..99999).to_s
-#     pesel1 = y + m.rjust(2, '0') + d.rjust(2, '0') + k
-#     User.create!( name: i, surname: n, email: "#{i}.#{n}.#{y}@wp.pl", pesel: pesel1, password: "#{i}#{n}" )
-#   end
-# end
+imie_m = ['Jan', 'Andrzej', 'Piotr', 'Krzysztof', 'Stanisław', 'Tomasz', 'Paweł', 'Józef', 'Marcin', 'Marek', 'Michał',
+          'Grzegorz', 'Jerzy', 'Tadeusz', 'Adam', 'Łukasz', 'Zbigniew', 'Ryszard', 'Dariusz', 'Henryk', 'Mariusz',
+          'Kazimierz', 'Wojciech', 'Robert', 'Mateusz', 'MarSian', 'Rafał', 'Jacek', 'Janusz', 'Mirosław', 'Maciej',
+          'Sławomir', 'Jarosław', 'Kamil', 'Wiesław', 'Roman', 'Władysław', 'Jakub', 'Artur', 'Zdzisław', 'Edward',
+          'Mieczysław', 'Damian', 'Dawid', 'Przemysław', 'Sebastian', 'Czesław', 'Leszek', 'Daniel', 'Waldemar' ]
+
+nazwisko_m = [ 'Nowak', 'Kowalski', 'Wiśniewski', 'Dąbrowski', 'Lewandowski', 'Wójcik', 'Kamiński', 'Kowalczyk',
+               'Zieliński', 'Szymański', 'Woźniak', 'Kozłowski', 'Jankowski', 'Wojciechowski', 'Kwiatkowski' ]
+
+imie_m.each do |i|
+  nazwisko_m.each do |n|
+    y = rand(30..99).to_s
+    m = rand(1..12).to_s
+    d = rand(1..30).to_s
+    k = rand(10000..49999).to_s
+    pesel1 = y + m.rjust(2, '0') + d.rjust(2, '0') + k
+    User.create!( name: i, surname: n, email: "#{i}.#{n}.#{y}@wp.pl", pesel: pesel1, password: "#{i}#{n}" )
+  end
+end
+
+imie_d = [ 'Anna', 'Maria', 'Katarzyna', 'Małgorzata', 'Agnieszka', 'Krystyna', 'Barbara', 'Ewa', 'Elżbieta', 'Zofia',
+           'Janina', 'Teresa', 'Joanna', 'Magdalena', 'Monika', 'Jadwiga', 'Danuta', 'Irena', 'Halina', 'Helena',
+           'Beata', 'Aleksandra', 'Marta', 'Dorota', 'Marianna', 'Grażyna', 'Stanisława', 'Iwona', 'Karolina', 'Bożena',
+           'Urszula', 'Justyna', 'Renata', 'Alicja', 'Paulina', 'Sylwia', 'Natalia', 'Wanda', 'Agata', 'Aneta',
+           'Izabela', 'Ewelina', 'Marzena', 'Wiesława', 'Genowefa', 'Patrycja', 'Kazimiera', 'Edyta', 'Stefania' ]
+
+nazwisko_d = [ 'Nowak', 'Kowalska', 'Wiśniewska', 'Dąbrowska', 'Lewandowska', 'Wójcik', 'Kamińska', 'Kowalczyk',
+               'Zielińska', 'Szymańska', 'Woźniak', 'Kozłowska', 'Jankowska', 'Wojciechowska', 'Kwiatkowska' ]
+imie_d.each do |i|
+  nazwisko_d.each do |n|
+    y = rand(30..99).to_s
+    m = rand(1..12).to_s
+    d = rand(1..30).to_s
+    k = rand(50000..99999).to_s
+    pesel1 = y + m.rjust(2, '0') + d.rjust(2, '0') + k
+    User.create!( name: i, surname: n, email: "#{i}.#{n}.#{y}@wp.pl", pesel: pesel1, password: "#{i}#{n}" )
+  end
+end
 puts "<<<< <<< << < SEED > >> >>> >>>> Dodano #{User.count} uzytkownikow"
 
-el_type = ElectionType.create!( name: "Wybory Prezydenckie" ) #1
+prez = ElectionType.create!( name: "Wybory Prezydenckie" ) #1
 ElectionType.create!( name: "Wybory Parlamentarne" ) #2
 ElectionType.create!( name: "Wybory Rektora Politechniki Białostockiej" ) #3
-ElectionType.create!( name: "Wybory Dziekana Wydziału Informatyki Politechniki Białostockiej" ) #4
-ElectionType.create!( name: "Wybory Przewodniczącego Samorządu Studentów Politechniki Białostockiej" ) #5
+dziekana = ElectionType.create!( name: "Wybory Dziekana Wydziału Informatyki Politechniki Białostockiej" ) #4
+sspb = ElectionType.create!( name: "Wybory Przewodniczącego Samorządu Studentów Politechniki Białostockiej" ) #5
 puts "<<<< <<< << < SEED > >> >>> >>>> Dodano #{ElectionType.count} typów wyborów"
 
-election_a = Election.create!( name: "Nazwa Testowa Wyborów", info: "Informacja", start: (Time.now), stop: (Time.now)+2.days, max_votes: 1, election_type: el_type)
+Election.create!( name: "Wybory V RP", info: "Głosujemy na nowego prezydenta V RP.", start: (Time.now), stop: (Time.now)+1.days, max_votes: 1, election_type: prez)
+Election.create!( name: "Szukany nowego dziekana", info: "Głosujemy na nowego prezydenta dziesiątej RP.", start: (Time.now)-2.months, stop: (Time.now)-1.month, max_votes: 1, election_type: dziekana)
+Election.create!( name: "Nowy przewodniczący poszukiwany!", info: "Szukamy nowego przewidniczącego SSPB.", start: (Time.now)+1.month, stop: (Time.now)+1.month+1.day, max_votes: 1, election_type: sspb)
 puts "<<<< <<< << < SEED > >> >>> >>>> Dodano #{Election.count} wyborów"
 
-ElectionUser.create!( vote: 1, user: user_a, election: election_a)
-puts "<<<< <<< << < SEED > >> >>> >>>> Dodano #{ElectionUser.count} electionuser"
+Election.all.each do |e|
+  User.all.each do |u|
+    ElectionUser.create!( vote: nil, user: u, election: e)
+  end
+end
+puts "<<<< <<< << < SEED > >> >>> >>>> Dodano #{ElectionUser.count} ElectionUserów"
 
-ElectionCandidate.create!(party: 1, list: 1, place: 1, user: user_a, election: election_a)
-puts "<<<< <<< << < SEED > >> >>> >>>> Dodano #{ElectionCandidate.count} electioncandidate"
+User.take(10).each do |u|
+  partia = 1
+  ElectionCandidate.create!(party: partia, list: 1, place: 1, user: u, election: prez)
+  partia += 1
+end
+puts "<<<< <<< << < SEED > >> >>> >>>> Dodano #{ElectionCandidate.count} ElectionUserów"
+
+
+User.take(7).each do |u|
+  ElectionCandidate.create!( user: u, election: dziekana )
+end
+puts "<<<< <<< << < SEED > >> >>> >>>> Dodano #{ElectionCandidate.count} ElectionUserów"
+
+
+User.take(20).each do |u|
+  ElectionCandidate.create!( user: u, election: sspb )
+end
+puts "<<<< <<< << < SEED > >> >>> >>>> Dodano #{ElectionCandidate.count} ElectionUserów"
