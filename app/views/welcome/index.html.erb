@@ -15,7 +15,7 @@
                 <div class="panel-body">
                   <div class="overlay">
                     <div class="inoverlay">
-                      <% if user_signed_in? && election.election_users.where("user_id = ?", current_user.id).present? %>
+                      <% if user_signed_in? && election.election_users.where("user_id = ? and vote is null", current_user.id).present? %>
                           <%= link_to 'Zagłosuj', vote_path(election), :class => "btn btn-success" %>
                       <% elsif user_signed_in? %>
                           <!--<p class="bg-warning">Nie możesz wziąć udziału w tym głosowaniu</p>-->
