@@ -69,6 +69,10 @@ class WelcomeController < ApplicationController
 
   def generate
     Prawn::Document.generate("electionresults.pdf") do
+      font_families.update("RobotoSlab" =>{
+          :normal=> "/assets/fonts/RobotoSlab-Regular.tff",
+      })
+      font "RobotoSlab"
       election = Election.find(@@electionID)
       election_voters = ElectionUser.select(:user_id).where("election_id = ?",@@electionID).uniq.to_a.count.to_s
       election_votes = ElectionUser.select(:user_id).where("election_id = ? and vote is not null",@@electionID).uniq.to_a.count.to_s
