@@ -104,4 +104,8 @@ class WelcomeController < ApplicationController
     pdf_filename = File.join(Rails.root, "electionresults.pdf")
     send_file("#{Rails.root}/electionresults.pdf", :filename => "electionresults.pdf", :type => "application/pdf")
   end
+
+  def about
+
+  end
 end
