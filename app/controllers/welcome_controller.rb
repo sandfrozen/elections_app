@@ -49,8 +49,8 @@ class WelcomeController < ApplicationController
 
     @@electionID = params[:id]
     @election = Election.find(params[:id])
-    @election_voters = ElectionUser.select(:User_id).where("Election_id = ?",params[:id]).uniq.to_a
-    @election_votes = ElectionUser.select(:User_id).where("Election_id = ? and vote is not null",params[:id]).uniq.to_a
+    @election_voters = ElectionUser.select(:user_id).where("Election_id = ?",params[:id]).uniq.to_a
+    @election_votes = ElectionUser.select(:user_id).where("Election_id = ? and vote is not null",params[:id]).uniq.to_a
     @frequency = @election_votes.length.to_f / @election_voters.length.to_f * 100
     @results = ElectionUser.group(:vote).where("Election_id = ?",params[:id]).order('count_all desc').count.to_a
     @candidates = User.all
@@ -70,9 +70,9 @@ class WelcomeController < ApplicationController
   def generate
     Prawn::Document.generate("electionresults.pdf") do
       election = Election.find(@@electionID)
-      election_voters = ElectionUser.select(:User_id).where("Election_id = ?",@@electionID).uniq.to_a.count.to_s
-      election_votes = ElectionUser.select(:User_id).where("Election_id = ? and vote is not null",@@electionID).uniq.to_a.count.to_s
-      results = ElectionUser.group(:vote).where("Election_id = ?",@@electionID).order('count_all desc').count.to_a
+      election_voters = ElectionUser.select(:user_id).where("election_id = ?",@@electionID).uniq.to_a.count.to_s
+      election_votes = ElectionUser.select(:user_id).where("election_id = ? and vote is not null",@@electionID).uniq.to_a.count.to_s
+      results = ElectionUser.group(:vote).where("election_id = ?",@@electionID).order('count_all desc').count.to_a
       frequency = election_votes.to_f / election_voters.to_f * 100
       candidates = User.all
       text "Wybory: " + election.name
@@ -97,7 +97,7 @@ class WelcomeController < ApplicationController
         i+=1
       end
     end
-    redirect_to '/electionresults.pdf'
-
+    pdf_filename = File.join(Rails.root, "electionresults.pdf")
+    send_file(pdf_filename, :filename => "electionresults.pdf", :type => "application/pdf")
   end
 end

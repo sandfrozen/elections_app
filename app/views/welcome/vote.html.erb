@@ -27,9 +27,9 @@
           <%= hidden_field_tag :election_id, @election.id %>
           <%= hidden_field_tag :max_votes, @election.max_votes %>
           <%= content_tag_for(:tr, @election.election_candidates.find_each) do |candidate| %>
-            <td><%= check_box_tag "candidate[]", candidate.User.id %></td>
+            <td><%= check_box_tag "candidate[]", candidate.user.id %></td>
 
-            <td><%= candidate.User.name %> <%= candidate.User.surname %></td>
+            <td><%= candidate.user.name %> <%= candidate.user.surname %></td>
             <td><%= candidate.party %></td>
             <td><%= candidate.place %></td>
             <td><%= candidate.place %></td>
